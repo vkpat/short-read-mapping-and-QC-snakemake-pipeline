@@ -9,7 +9,7 @@ A Snakemake workflow for short read mapping and QC analysis
 
 ## Usage
 
-The usage of this workflow is described in the [Snakemake Workflow Catalog](https://snakemake.github.io/snakemake-workflow-catalog/?usage=<owner>%2F<repo>).
+The usage of this workflow is described in the
 
 If you use this workflow in a paper, don't forget to give credits to the authors by citing the URL of this (original) <repo>sitory and its DOI (see above).
 
