@@ -1,4 +1,80 @@
-# Main entrypoint of the workflow. 
-# Please follow the best practices: 
-# https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html,
-# in particular regarding the standardized folder structure mentioned there. 
+configfile: "config.yaml"
+
+wildcard_constraints:
+    refid="|".join(config['REFIDS']),
+    sample="|".join(config['SAMPLES'])
+
+
+rule all:
+    input:
+        expand("alignments/{refid}_{sample}_element.bam", refid=config['REFIDS'], sample=config['SAMPLES']),
+        expand("alignments/{refid}_{sample}_element.stats.txt", refid=config['REFIDS'], sample=config['SAMPLES']),
+        "qc/element_20231018_HG002_report.html"
+
+def get_read_group(wildcards):
+    rg = config['READPAIRS'][wildcards.sample]['read_group']
+    rg_str = '\\t'.join([f'{k}:{v}' for k, v in rg.items()])
+    return f"-R '@RG\\t{rg_str}'"
+
+rule fastqc:
+    input:
+        r1 = lambda wildcards: config['READPAIRS'][wildcards.sample]['R1'],
+        r2 = lambda wildcards: config['READPAIRS'][wildcards.sample]['R2']
+    output:
+        html = temp("fastqc/{sample}_fastqc.html"),
+        zip = temp("fastqc/{sample}_fastqc.zip")
+    wrapper:
+        "0.72.0/bio/fastqc"
+
+rule bwa_mem:
+    input:
+        reads = lambda wildcards: [config['READPAIRS'][wildcards.sample]['R1'], config['READPAIRS'][wildcards.sample]['R2']],
+        idx = lambda wildcards: config['REF'][wildcards.refid] + ".bwt"
+    output:
+        bam = "alignments/{refid}_{sample}_element.bam"
+    params:
+        extra = get_read_group,
+        sorting = "samtools",
+        sort_order = "coordinate"
+    threads: config['THREADS']['bwa']
+    log:
+        "logs/bwa_mem/{refid}_{sample}.log"
+    wrapper:
+        "v1.31.1/bio/bwa/mem"
+
+rule samtools_index:
+    input:
+        "alignments/{refid}_{sample}_element.bam",
+    output:
+        "alignments/{refid}_{sample}_element.bam.bai",
+    log:
+        "logs/samtools_index/{refid}_{sample}.log",
+    threads: 4
+    wrapper:
+        "v1.31.1/bio/samtools/index"
+
+rule samtools_stats:
+    input:
+        bam = "alignments/{refid}_{sample}_element.bam",
+        ref = lambda wildcards: config['REF'][wildcards.refid],
+        bai= "alignments/{refid}_{sample}_element.bam.bai"
+    output:
+        stats = "alignments/{refid}_{sample}_element.stats.txt"
+    params:
+        threads = config['THREADS']['samstat']
+    threads: config['THREADS']['samstat']
+    log:
+        "logs/samtools_stats/{refid}/{sample}.log"
+    wrapper:
+        "v1.31.1/bio/samtools/stats"
+
+rule multiqc:
+    input:
+        expand("alignments/{refid}_{sample}_element.stats.txt", refid=config['REFIDS'], sample=config['SAMPLES']),
+        expand("fastqc/{sample}_fastqc.zip", sample=config['SAMPLES'])
+    output:
+        "qc/element_20231018_HG002_report.html"
+    log:
+        "logs/multiqc.log"
+    wrapper:
+        "v1.31.1/bio/multiqc"
