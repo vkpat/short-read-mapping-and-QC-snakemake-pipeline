@@ -1,0 +1,39 @@
+RUNID: "HG002_elementbio_20231018"
+REFIDS: ["v1.0.1mat", "v1.0.1pat","GRCh37","GRCh38-GIABv3", "CHM13V2"]
+REF:
+  v1.0.1mat: resources/hg002v1.0.1.mat_Y_EBV_MT.fasta.gz
+  v1.0.1pat: resources/hg002v1.0.1.pat_X_EBV_MT.fasta.gz
+  GRCh37: resources/hs37d5.fa.gz
+  GRCh38-GIABv3: resources/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.gz
+  CHM13V2: resources/chm13v2.0.fa
+SAMPLES:
+  [
+    "GAT-APP-C138",
+    "GAT-APP-C148"
+  ]
+THREADS:
+  bwa: 22
+  samsort: 12
+  samstat: 4
+MEMORY: "128"
+READPAIRS:
+  GAT-APP-C138:
+    read_group:
+      ID: "APP-2228-HG002-20230922"
+      CN: "Element"
+      PU: "instrument=AV224101;flowcellid=2222717748[PN=710-00720]"
+      SM: "HG002"
+      DT: 20230922
+      DS: "Custom Step and Trap reagents Q50 - NIST POR size library GAT-APP-C138 loaded at 10pM with 0.1pM PhiX spike in;KitConfiguration=300Cycles;PreparationWorkflow=Adept;ChemistryVersion=Cloudbreak;PlatformVersion=2.3.0"
+    R1: data/nist/20230922_AV224101_APP-2228/Samples/GAT-APP-C138/GAT-APP-C138_R1.fastq.gz
+    R2: data/nist/20230922_AV224101_APP-2228/Samples/GAT-APP-C138/GAT-APP-C138_R2.fastq.gz
+  GAT-APP-C148:
+    read_group:
+      ID: "APP-2262-HG002-20230929"
+      CN: "Element"
+      PU: "instrument=AV230101;flowcellid=2141886718[PN=710-00720]"
+      SM: "HG002"
+      DT: 20230929
+      DS: "Special Trap and Step Reagents - NIST HG002 1000bp library GAT-APP-C148 loaded at 11pM with 0.1pM PhiX spike in;KitConfiguration=300Cycles;PreparationWorkflow=Adept;ChemistryVersion=Cloudbreak;PlatformVersion=2.3.0"
+    R1: data/nist/20230929_AV230101_APP-2262/Samples/GAT-APP-C148/GAT-APP-C148_R1.fastq.gz
+    R2: data/nist/20230929_AV230101_APP-2262/Samples/GAT-APP-C148/GAT-APP-C148_R2.fastq.gz
