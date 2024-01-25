@@ -9,7 +9,7 @@ rule all:
     input:
         expand("alignments/{refid}_{sample}.bam", refid=config['REFIDS'], sample=config['SAMPLES']),
         expand("alignments/{refid}_{sample}.stats.txt", refid=config['REFIDS'], sample=config['SAMPLES']),
-        "qc/{refid}_{sample}.html"
+        "qc/{refid}_{sample}_multiqc.html"
 
 def get_read_group(wildcards):
     rg = config['READPAIRS'][wildcards.sample]['read_group']
@@ -73,7 +73,7 @@ rule multiqc:
         expand("alignments/{refid}_{sample}.stats.txt", refid=config['REFIDS'], sample=config['SAMPLES']),
         expand("fastqc/{sample}_fastqc.zip", sample=config['SAMPLES'])
     output:
-        "qc/{refid}_{sample}.html"
+        "qc/{refid}_{sample}_multiqc.html"
     log:
         "logs/multiqc.log"
     wrapper:
