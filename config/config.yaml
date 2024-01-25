@@ -1,4 +1,4 @@
-RUNID: "Sample analysis"
+RUNID: "sample_analysisname"
 REFIDS: ["GRCh37","GRCh38-GIABv3", "CHM13V2"]
 REF:
   GRCh37: resources/hs37d5.fa.gz
