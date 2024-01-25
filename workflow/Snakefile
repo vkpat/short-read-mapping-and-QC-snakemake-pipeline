@@ -73,7 +73,7 @@ rule multiqc:
         expand("alignments/{refid}_{sample}.stats.txt", refid=config['REFIDS'], sample=config['SAMPLES']),
         expand("fastqc/{sample}_fastqc.zip", sample=config['SAMPLES'])
     output:
-        "qc/sample_analysisname_multiqc.html
+        "qc/sample_analysisname_multiqc.html"
     log:
         "logs/multiqc.log"
     wrapper:
