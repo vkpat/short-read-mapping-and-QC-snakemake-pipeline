@@ -7,7 +7,6 @@ REF:
 SAMPLES:
   [
   sample1
-  sample2
   ]
 THREADS:
   bwa: 22
@@ -18,8 +17,4 @@ READPAIRS:
   sample1:
     read_group:
     R1: sample1_R1.fastq.gz
-    R2: sample2_R2.fastq.gz
-  sample2:
-    read_group:
-    R1: sample2_R1.fastq.gz
     R2: sample2_R2.fastq.gz
