@@ -7,9 +7,9 @@ wildcard_constraints:
 
 rule all:
     input:
-        expand("alignments/{refid}_{sample}_element.bam", refid=config['REFIDS'], sample=config['SAMPLES']),
-        expand("alignments/{refid}_{sample}_element.stats.txt", refid=config['REFIDS'], sample=config['SAMPLES']),
-        "qc/element_20231018_HG002_report.html"
+        expand("alignments/{refid}_{sample}.bam", refid=config['REFIDS'], sample=config['SAMPLES']),
+        expand("alignments/{refid}_{sample}.stats.txt", refid=config['REFIDS'], sample=config['SAMPLES']),
+        "qc/{refid}_{sample}.html"
 
 def get_read_group(wildcards):
     rg = config['READPAIRS'][wildcards.sample]['read_group']
@@ -31,7 +31,7 @@ rule bwa_mem:
         reads = lambda wildcards: [config['READPAIRS'][wildcards.sample]['R1'], config['READPAIRS'][wildcards.sample]['R2']],
         idx = lambda wildcards: config['REF'][wildcards.refid] + ".bwt"
     output:
-        bam = "alignments/{refid}_{sample}_element.bam"
+        bam = "alignments/{refid}_{sample}.bam"
     params:
         extra = get_read_group,
         sorting = "samtools",
@@ -44,9 +44,9 @@ rule bwa_mem:
 
 rule samtools_index:
     input:
-        "alignments/{refid}_{sample}_element.bam",
+        "alignments/{refid}_{sample}.bam",
     output:
-        "alignments/{refid}_{sample}_element.bam.bai",
+        "alignments/{refid}_{sample}.bam.bai",
     log:
         "logs/samtools_index/{refid}_{sample}.log",
     threads: 4
@@ -55,11 +55,11 @@ rule samtools_index:
 
 rule samtools_stats:
     input:
-        bam = "alignments/{refid}_{sample}_element.bam",
+        bam = "alignments/{refid}_{sample}.bam",
         ref = lambda wildcards: config['REF'][wildcards.refid],
-        bai= "alignments/{refid}_{sample}_element.bam.bai"
+        bai= "alignments/{refid}_{sample}.bam.bai"
     output:
-        stats = "alignments/{refid}_{sample}_element.stats.txt"
+        stats = "alignments/{refid}_{sample}.stats.txt"
     params:
         threads = config['THREADS']['samstat']
     threads: config['THREADS']['samstat']
@@ -70,10 +70,10 @@ rule samtools_stats:
 
 rule multiqc:
     input:
-        expand("alignments/{refid}_{sample}_element.stats.txt", refid=config['REFIDS'], sample=config['SAMPLES']),
+        expand("alignments/{refid}_{sample}.stats.txt", refid=config['REFIDS'], sample=config['SAMPLES']),
         expand("fastqc/{sample}_fastqc.zip", sample=config['SAMPLES'])
     output:
-        "qc/element_20231018_HG002_report.html"
+        "qc/{refid}_{sample}.html"
     log:
         "logs/multiqc.log"
     wrapper:
