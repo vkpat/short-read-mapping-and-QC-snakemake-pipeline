@@ -1,0 +1,11 @@
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - python =3.11
+  - snakemake = 7.32.3
+  - bwa = 0.7.17
+  - samtools = 1.17
+  - htslib =1.17
+  - multiqc = 1.16
+  - FastQC = v0.12.1  
