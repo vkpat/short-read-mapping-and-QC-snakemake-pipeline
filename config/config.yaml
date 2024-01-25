@@ -17,4 +17,4 @@ READPAIRS:
   sample1:
     read_group:
     R1: test_dataset/sample1_R1.fastq.gz
-    R2: test_dataset/sample2_R2.fastq.gz
+    R2: test_dataset/sample1_R2.fastq.gz
