@@ -16,5 +16,5 @@ MEMORY: "128"
 READPAIRS:
   sample1:
     read_group:
-    R1: sample1_R1.fastq.gz
-    R2: sample2_R2.fastq.gz
+    R1: test_dataset/sample1_R1.fastq.gz
+    R2: test_dataset/sample2_R2.fastq.gz
