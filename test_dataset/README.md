@@ -1,4 +1,4 @@
-This sample test dataset was created by using samtools bam2fq tool to convert bam to fastqs
+## This sample test dataset was created by using samtools bam2fq tool to convert bam to fastqs
 
 ## Used the GIAB publicly available element data 
 
@@ -6,7 +6,7 @@ This sample test dataset was created by using samtools bam2fq tool to convert ba
 
 - https://ftp-trace.ncbi.nlm.nih.gov/giab/ftp/data/AshkenazimTrio/HG002_NA24385_son/Element_AVITI_20231018/HG002_GRCh38-GIABv3_Element-LngInsert_2X150_55x_20231018.bam.bai
 
-  ## Bed file
+## Bed file
 chr4_1Mbp_segments_notinanysegdups.bed:  segments of GRCh38 that don't contain any segdups
 Note: First line from bed file was used for filtering the bam file with specific genomic intervals from bed 
 
