@@ -10,6 +10,7 @@ rule all:
         expand("alignments/{refid}_{sample}.bam", refid=config['REFIDS'], sample=config['SAMPLES']),
         expand("alignments/{refid}_{sample}.stats.txt", refid=config['REFIDS'], sample=config['SAMPLES']),
         expand("alignments/{refid}_{sample}.picard.metrics",refid=config['REFIDS'], sample=config['SAMPLES']),
+        expand( "mosdepth_bed/{refid}_{sample}.regions.bed.gz",refid=config['REFIDS'], sample=config['SAMPLES']),
         "qc/sample_analysisname_multiqc.html"
 
 def get_read_group(wildcards):
@@ -100,7 +101,8 @@ rule multiqc:
     input:
         expand("alignments/{refid}_{sample}.stats.txt", refid=config['REFIDS'], sample=config['SAMPLES']),
         expand("fastqc/{sample}_fastqc.zip", sample=config['SAMPLES']),
-        expand("alignments/{refid}_{sample}.picard.metrics",refid=config['REFIDS'], sample=config['SAMPLES'])
+        expand("alignments/{refid}_{sample}.picard.metrics",refid=config['REFIDS'], sample=config['SAMPLES']),
+        expand( "mosdepth_bed/{refid}_{sample}.regions.bed.gz",refid=config['REFIDS'], sample=config['SAMPLES'])
     output:
         "qc/sample_analysisname_multiqc.html"
     log:
