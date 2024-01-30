@@ -2,13 +2,12 @@ configfile: "config.yaml"
 
 wildcard_constraints:
     refid="|".join(config['REFIDS']),
-    sample="|".join(config['SAMPLES']),
-    bed_files= "|".join(config['BED'])
+    sample="|".join(config['SAMPLES'])
 
 rule all:
     input:
         expand("alignments/{refid}_{sample}.bam", refid=config['REFIDS'], sample=config['SAMPLES']),
-        expand("alignments/{refid}_{sample}.stats.txt", refid=config['REFIDS'], sample=config['SAMPLES']),
+        expand("alignments/{refid}_{sample}.samtools_stats.txt", refid=config['REFIDS'], sample=config['SAMPLES']),
         expand("alignments/{refid}_{sample}.picard.metrics",refid=config['REFIDS'], sample=config['SAMPLES']),
         expand( "mosdepth_bed/{refid}_{sample}.regions.bed.gz",refid=config['REFIDS'], sample=config['SAMPLES']),
         "qc/sample_analysisname_multiqc.html"
@@ -61,7 +60,7 @@ rule samtools_stats:
         ref = lambda wildcards: config['REF'][wildcards.refid],
         bai= "alignments/{refid}_{sample}.bam.bai"
     output:
-        stats = "alignments/{refid}_{sample}.stats.txt"
+        stats = "alignments/{refid}_{sample}.samtools_stats.txt"
     params:
         threads = config['THREADS']['samstat']
     threads: config['THREADS']['samstat']
@@ -74,7 +73,7 @@ rule mosdepth_bed:
     input:
         bam="alignments/{refid}_{sample}.bam",
         bai="alignments/{refid}_{sample}.bam.bai",
-        bed="{bed_files}"
+        bed="../mosdepth_bed/chr4_1Mbp_segments_GRCh38_notinanysegdups.bed"
     output:
         "mosdepth_bed/{refid}_{sample}.mosdepth.global.dist.txt",
         "mosdepth_bed/{refid}_{sample}.mosdepth.region.dist.txt",
