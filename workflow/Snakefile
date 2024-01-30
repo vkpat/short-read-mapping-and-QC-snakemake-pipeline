@@ -74,7 +74,7 @@ rule mosdepth_bed:
     input:
         bam="alignments/{refid}_{sample}.bam",
         bai="alignments/{refid}_{sample}.bam.bai",
-        bed="chr4_1Mbp_segments_GRCh38_notinanysegdups.bed",
+        bed="mosdepth_bed/chr4_1Mbp_segments_GRCh38_notinanysegdups.bed",
     output:
         "mosdepth_bed/{refid}_{sample}.mosdepth.global.dist.txt",
         "mosdepth_bed/{refid}_{sample}.mosdepth.region.dist.txt",
