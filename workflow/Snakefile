@@ -2,8 +2,8 @@ configfile: "config.yaml"
 
 wildcard_constraints:
     refid="|".join(config['REFIDS']),
-    sample="|".join(config['SAMPLES'])
-
+    sample="|".join(config['SAMPLES']),
+    bed_files= "|".join(config['BED'])
 
 rule all:
     input:
@@ -74,7 +74,7 @@ rule mosdepth_bed:
     input:
         bam="alignments/{refid}_{sample}.bam",
         bai="alignments/{refid}_{sample}.bam.bai",
-        bed="mosdepth_bed/chr4_1Mbp_segments_GRCh38_notinanysegdups.bed",
+        bed="{bed_files}"
     output:
         "mosdepth_bed/{refid}_{sample}.mosdepth.global.dist.txt",
         "mosdepth_bed/{refid}_{sample}.mosdepth.region.dist.txt",
