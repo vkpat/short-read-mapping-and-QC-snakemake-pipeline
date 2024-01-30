@@ -9,6 +9,7 @@ rule all:
     input:
         expand("alignments/{refid}_{sample}.bam", refid=config['REFIDS'], sample=config['SAMPLES']),
         expand("alignments/{refid}_{sample}.stats.txt", refid=config['REFIDS'], sample=config['SAMPLES']),
+        expand("alignments/{refid}_{sample}.picard.metrics",refid=config['REFIDS'], sample=config['SAMPLES']),
         "qc/sample_analysisname_multiqc.html"
 
 def get_read_group(wildcards):
@@ -83,10 +84,23 @@ rule mosdepth_bed:
     wrapper:
         "v3.3.5/bio/mosdepth"
 
+rule picard_collect_metrics:
+    input:
+        bam= "alignments/{refid}_{sample}.bam",
+        ref = lambda wildcards: config['REF'][wildcards.refid],
+        bai= "alignments/{refid}_{sample}.bam.bai"
+    output:
+        metrics= "alignments/{refid}_{sample}.picard.metrics"
+    log:
+        "logs/picard_collect_metrics/{refid}_{sample}.log"
+    wrapper:
+        "v3.3.5/bio/picard/collectmultiplemetrics
+
 rule multiqc:
     input:
         expand("alignments/{refid}_{sample}.stats.txt", refid=config['REFIDS'], sample=config['SAMPLES']),
-        expand("fastqc/{sample}_fastqc.zip", sample=config['SAMPLES'])
+        expand("fastqc/{sample}_fastqc.zip", sample=config['SAMPLES']),
+        expand("alignments/{refid}_{sample}.picard.metrics",refid=config['REFIDS'], sample=config['SAMPLES'])
     output:
         "qc/sample_analysisname_multiqc.html"
     log:
