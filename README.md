@@ -4,9 +4,21 @@
 [![GitHub actions status](https://github.com/<owner>/<repo>/workflows/Tests/badge.svg?branch=main)](https://github.com/<owner>/<repo>/actions?query=branch%3Amain+workflow%3ATests)
 
 
-A Snakemake workflow for short read mapping and QC analysis  
+A Snakemake workflow for read mapping and QC analysis for short read sequencing data. This workflow is under development. 
 
+This workflow includes the following tools:
 
+- Pre-processing QC:
+FastQC
+
+- Mapping tool:
+BWA-MEM
+
+- Post-processing QC tools:
+Samtools stats
+Mosdepth
+Picard collect metrics
+MultiQC
 
 
 
