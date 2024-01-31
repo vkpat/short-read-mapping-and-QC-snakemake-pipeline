@@ -80,7 +80,10 @@ rule mosdepth_bed:
         "mosdepth_bed/{refid}_{sample}.regions.bed.gz",
         summary="mosdepth_bed/{refid}_{sample}.mosdepth.summary.txt",  # this named output is required for prefix parsing
     log:
-        "logs/mosdepth_bed/{refid}_{sample}.log"
+        "logs/mosdepth_bed/{refid}_{sample}.log",
+    params:
+        extra="--no-per-base --by 1000 --mapq 20",
+    threads: 4
     wrapper:
         "v3.3.5/bio/mosdepth"
 
