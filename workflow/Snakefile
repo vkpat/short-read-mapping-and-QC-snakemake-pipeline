@@ -99,7 +99,7 @@ rule picard_collect_metrics:
     log:
         "logs/picard_collect_metrics/{refid}_{sample}.log"
     wrapper:
-        "v3.3.5/bio/picard/collectmultiplemetrics
+        "v3.3.5/bio/picard/collectmultiplemetrics"
 
 rule multiqc:
     input:
