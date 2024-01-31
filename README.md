@@ -6,7 +6,7 @@
 
 A Snakemake workflow for read mapping and QC analysis for short read sequencing data. This workflow is under development. 
 
-This workflow includes the following tools:
+ ## This Snakemake workflow includes the following tools:
 
 ## Pre-processing QC:
 
