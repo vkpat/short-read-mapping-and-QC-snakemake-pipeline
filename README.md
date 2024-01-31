@@ -19,8 +19,11 @@ BWA-MEM
 ## Post-processing QC tools:
 
 Samtools stats
+
 Mosdepth
+
 Picard collect metrics
+
 MultiQC
 
 
