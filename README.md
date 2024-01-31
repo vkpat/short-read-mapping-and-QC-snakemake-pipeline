@@ -8,13 +8,16 @@ A Snakemake workflow for read mapping and QC analysis for short read sequencing 
 
 This workflow includes the following tools:
 
-- Pre-processing QC:
+## Pre-processing QC:
+
 FastQC
 
-- Mapping tool:
+## Mapping tool:
+
 BWA-MEM
 
-- Post-processing QC tools:
+## Post-processing QC tools:
+
 Samtools stats
 Mosdepth
 Picard collect metrics
