@@ -92,7 +92,7 @@ rule picard_collect_metrics:
     output:
         metrics= "alignments/{refid}_{sample}.picard.metrics.txt"
     params:
-        PROGRAM:"CollectQualityYieldMetrics CollectInsertSizeMetrics"
+        PROGRAM="CollectQualityYieldMetrics CollectInsertSizeMetrics"
     log:
         "logs/picard_collect_metrics/{refid}_{sample}.log"
     wrapper:
