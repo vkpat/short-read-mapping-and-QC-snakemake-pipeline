@@ -46,4 +46,5 @@ You will need to download the reference genome manually before running the workf
 ## Authors
 
 Nate Olson
+
 Vaidehi Patel
