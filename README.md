@@ -42,4 +42,8 @@ Software requirement to install dependencies is conda or mamba. It is best to cr
 ## Reference genome
 
 You will need to download the reference genome manually before running the workflow. Multiple references such as GRCh38, GRCh37 and CHM13 can be used to run this short-read Mapping and QC workflow 
- 
+
+## Authors
+
+Nate Olson
+Vaidehi Patel
