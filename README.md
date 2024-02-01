@@ -6,6 +6,8 @@
 A Snakemake workflow for read mapping and QC analysis for short read sequencing data. This workflow is under development.This Snakemake workflow includes the following tools to process mutiple samples of the short pair-end sequencing data (WGS).
 
 ## Snakemake workflow includes:
+![short read Mapping and QC snakemakeworkflow](https://github.com/vkpat/short-read-mapping-and-QC-snakemake-pipeline/assets/143219019/07fc4e09-83ac-4978-9bf2-3ce138c004e6)
+
 
 ## Pre-processing QC:
 
