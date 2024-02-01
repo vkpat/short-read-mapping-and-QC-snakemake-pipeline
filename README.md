@@ -25,6 +25,21 @@ Picard collect metrics
 
 MultiQC
 
+## Installation instructions
 
+Download the latest code from Github:
 
+git clone https://github.com/vkpat/short-read-mapping-and-QC-snakemake-pipeline.git
+
+ ## Requirement
+
+Software requirement to install dependencies is conda or mamba. It is best to create a new conda or mamba envirnoment using the provided YAML file:
+
+- mamba env create -f environment.yaml
+
+- mamba activate envirnoment
+
+## Reference genome
+
+You will need to download the reference genome manually before running the workflow. Multiple references such as GRCh38, GRCh37 and CHM13 can be used to run this short-read Mapping and QC workflow 
  
