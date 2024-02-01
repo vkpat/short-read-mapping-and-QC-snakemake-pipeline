@@ -10,7 +10,7 @@ A Snakemake workflow for read mapping and QC analysis for short read sequencing 
 
 ![short read Mapping and QC snakemakeworkflow](https://github.com/vkpat/short-read-mapping-and-QC-snakemake-pipeline/assets/143219019/de6b9ac3-bc25-47d4-b350-cb2d1b7aa6be)
 
-## bioinformatics software tools:
+## Bioinformatics software tools:
 
 FastQC
 
