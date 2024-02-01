@@ -6,6 +6,7 @@
 ## Authors:
 
 Nate Olson
+
 Vaidehi Patel
 
 A Snakemake workflow for read mapping and QC analysis for short read sequencing data. This workflow is under development. 
