@@ -7,9 +7,9 @@ A Snakemake workflow for read mapping and QC analysis for short read sequencing 
 
 ## Authors:
 
-Nate Olson
+- Nate Olson
 
-Vaidehi Patel
+- Vaidehi Patel
 
  ## This Snakemake workflow includes the following tools:
 
